@@ -4,10 +4,17 @@
 # Automatically use the directory where this script is located as the project path
 $ProjectPath = $PSScriptRoot
 
-# Update this if the standalone PHP 8.4 was installed in a different location
-$PhpPath = "C:\php\php.exe" 
+# Paths to the standalone PHP 8.4 and Composer
+$PhpPath = "C:\Users\Evangeline\.config\herd-lite\bin\php.exe" 
+$ComposerPath = "C:\Users\Evangeline\.config\herd-lite\bin\composer.phar"
 
 Set-Location -Path $ProjectPath
+
+Write-Host "Running composer update..."
+Start-Process -FilePath $PhpPath -ArgumentList "$ComposerPath update" -NoNewWindow -Wait
+
+Write-Host "Running composer setup..."
+Start-Process -FilePath $PhpPath -ArgumentList "$ComposerPath run setup" -NoNewWindow -Wait
 
 Write-Host "Starting Laravel Server (PHP 8.4) in the background..."
 Start-Process -FilePath $PhpPath -ArgumentList "artisan serve --port=8000" -WindowStyle Minimized

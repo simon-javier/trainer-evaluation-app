@@ -39,35 +39,35 @@
     "scripts": {
         "setup": [
             "composer install",
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php artisan key:generate",
-            "@php artisan migrate --force",
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan key:generate",
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan migrate --force",
             "npm install --ignore-scripts",
             "npm run build"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan serve\" \"C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan queue:listen --tries=1 --timeout=0\" \"C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
         ],
         "test": [
-            "@php artisan config:clear --ansi",
-            "@php artisan test"
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan config:clear --ansi",
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan test"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "@php artisan boost:update --ansi"
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan boost:update --ansi"
         ],
         "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan key:generate --ansi",
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "C:/Users/Evangeline/.config/herd-lite/bin/php.exe artisan migrate --graceful --ansi"
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
