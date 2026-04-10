@@ -7,8 +7,19 @@ $ProjectPath = $PSScriptRoot
 # Paths to the standalone PHP 8.4 and Composer
 $PhpPath = "C:\Users\Evangeline\.config\herd-lite\bin\php.exe" 
 $ComposerPath = "C:\Users\Evangeline\.config\herd-lite\bin\composer.phar"
+$CaCertPath = Join-Path $ProjectPath "cacert.pem"
 
 Set-Location -Path $ProjectPath
+
+# Download cacert.pem if it doesn't exist to fix cURL SSL errors (Error 60)
+if (-Not (Test-Path $CaCertPath)) {
+    Write-Host "Downloading cacert.pem for SSL verification..."
+    Invoke-WebRequest -Uri "https://curl.se/ca/cacert.pem" -OutFile $CaCertPath
+}
+
+# Tell PHP to use this certificate for all connections by setting these environment variables
+$env:CURL_CA_BUNDLE = $CaCertPath
+$env:SSL_CERT_FILE = $CaCertPath
 
 Write-Host "Running composer update..."
 Start-Process -FilePath $PhpPath -ArgumentList "$ComposerPath update" -NoNewWindow -Wait
