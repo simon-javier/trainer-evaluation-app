@@ -41,5 +41,8 @@ echo Starting the application server...
 :: Open the browser in a separate background process after a short delay
 start /B cmd /c "timeout /t 3 >nul && start """" %URL%"
 
+:: Start the Vite development server in a new window
+start "Vite Dev Server" cmd /c "npm run dev"
+
 :: Run the standard PHP server on the correct port
 php artisan serve --port=42069
