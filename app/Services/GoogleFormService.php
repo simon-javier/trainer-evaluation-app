@@ -17,6 +17,15 @@ class GoogleFormService
     public function __construct()
     {
         $this->client = new Client;
+
+        // Disable SSL verification for local development to fix cURL error 60
+        if (app()->isLocal()) {
+            $httpClient = new \GuzzleHttp\Client([
+                'verify' => false,
+            ]);
+            $this->client->setHttpClient($httpClient);
+        }
+
         // Load OAuth Client ID credentials
         $credentialPath = storage_path('app/private/oauth-credentials.json');
 
