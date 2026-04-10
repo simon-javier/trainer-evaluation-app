@@ -31,7 +31,7 @@ Write-Host "Starting Laravel Server (PHP 8.4) in the background..."
 Start-Process -FilePath $PhpPath -ArgumentList "artisan serve --port=8000" -WindowStyle Minimized
 
 Write-Host "Starting Vite Frontend in the background..."
-Start-Process -FilePath "cmd.exe" -ArgumentList "/c npm run dev" -WindowStyle Minimized
+Start-Process -FilePath "npm.cmd" -ArgumentList "run dev" -WindowStyle Minimized
 
 Write-Host "Application started successfully!"
 Start-Sleep -Seconds 3

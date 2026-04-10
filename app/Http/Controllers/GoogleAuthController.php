@@ -13,16 +13,6 @@ class GoogleAuthController extends Controller
     public function redirect(Request $request)
     {
         $client = new Client;
-
-        // Configure Guzzle to use the cacert.pem file if it exists, or disable verify for local dev
-        $guzzleOptions = [];
-        if (file_exists(base_path('cacert.pem'))) {
-            $guzzleOptions['verify'] = base_path('cacert.pem');
-        } elseif (app()->environment('local')) {
-            $guzzleOptions['verify'] = false;
-        }
-        $client->setHttpClient(new \GuzzleHttp\Client($guzzleOptions));
-
         // Load OAuth Client ID credentials
         $credentialPath = storage_path('app/private/oauth-credentials.json');
 
@@ -51,16 +41,6 @@ class GoogleAuthController extends Controller
     public function callback(Request $request)
     {
         $client = new Client;
-
-        // Configure Guzzle to use the cacert.pem file if it exists, or disable verify for local dev
-        $guzzleOptions = [];
-        if (file_exists(base_path('cacert.pem'))) {
-            $guzzleOptions['verify'] = base_path('cacert.pem');
-        } elseif (app()->environment('local')) {
-            $guzzleOptions['verify'] = false;
-        }
-        $client->setHttpClient(new \GuzzleHttp\Client($guzzleOptions));
-
         $credentialPath = storage_path('app/private/oauth-credentials.json');
 
         if (! file_exists($credentialPath)) {
